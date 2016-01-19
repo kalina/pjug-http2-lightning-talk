@@ -27,14 +27,13 @@ Drew Kalina
 ---
 # Motivation and Goals
 
-Decrease latency to improve load times
+Decrease latency to improve load times (specifically perceived user latency)
 
-1. Improve latency (specifically perceived user latency)
-2. Minimize protocol overhead (compression)
-3. Eliminate "Head of line blocking"
+1. Use One TCP Connection
+2. Multiplex requests and eliminate "Head of line blocking"
+3. Minimize protocol overhead (compression)
 4. Request prioritization and Server Push
-5. Use One TCP Connection
-6. Maintain semantics of HTTP/1.1
+5. Maintain semantics of HTTP/1.1
 
 ---
 # In One Slide
@@ -48,7 +47,7 @@ Connections are expensive
 * resource overhead
 
 ---
-# Multiplexing
+# Multiplexing 
 Multiple requests can be sent on the same TCP connection
 * Can be received out of order eliminating "head of line blocking".
 * Makes some performance strategies such as domain sharding and request inlining couterproductive.
@@ -60,13 +59,8 @@ Multiple requests can be sent on the same TCP connection
 
 ---
 # Request prioritization
-Multiple requests can be sent on the same TCP connection
-* Can be received out of order eliminating "head of line blocking".
-* Makes some performance strategies such as domain sharding and request inlining counterproductive.
-
----
-# Stream Dependencies
-Client can specify which resources are more important  Servers don't have to honor it though.
+* Clients can specify which resources are more important
+* Servers don't have to honor it though
 
 ---
 # Server Push
